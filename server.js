@@ -23,7 +23,8 @@ app.post('/', (req, res) => {
     res.send(true)
 })
 
-MongoClient.connect(DB_URL, { useNewUrlParser: true }).then((db) => {
+MongoClient.connect(DB_URL, { useNewUrlParser: true }).then((client) => {
+  const db = client.db('roblox-error-handler')
   app.locals.db = db
   app.listen(process.env.PORT, () => {
     console.log('server is listening');
