@@ -11,9 +11,8 @@ app.get('/', (req, res, next) => {
   res.send('Not allowed')
 })
 
-app.post('/', (req, res, next) => {
+app.post('/', (req, res) => {
     console.log(req.body)
-    next()
 })
 
-app.listen(process.env.PORT || 3000, process.env.IP)
+app.listen(process.env.PORT)
