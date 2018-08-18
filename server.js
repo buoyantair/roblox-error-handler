@@ -1,6 +1,10 @@
 require('dotenv').config()
 const express = require('express')
 const bodyParser = require('body-parser')
+const MongoClient = require('mongodb').MongoClient
+
+
+const DB_URL = process.env.DB_URL
 
 const app = express()
 
@@ -12,7 +16,14 @@ app.get('/', (req, res, next) => {
 })
 
 app.post('/', (req, res) => {
+    console.log('received error log')
     console.log(req.body)
+    db.collection('logs').insertOne(req.body)
+
+    res.send(true)
 })
 
-app.listen(process.env.PORT)
+MongoClient.connect(DB_URL).then((db) => {
+  app.locals.db = db
+  app.listen(process.env.PORT)
+})
