@@ -23,7 +23,7 @@ app.post('/', (req, res) => {
     res.send(true)
 })
 
-MongoClient.connect(DB_URL).then((db) => {
+MongoClient.connect(DB_URL, { useNewUrlParser: true }).then((db) => {
   app.locals.db = db
   app.listen(process.env.PORT)
-})
+})``
