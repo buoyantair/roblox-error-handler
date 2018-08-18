@@ -18,7 +18,7 @@ app.get('/', (req, res, next) => {
 app.post('/', (req, res) => {
     console.log('received error log')
     console.log(req.body)
-    db.collection('logs').insertOne(req.body)
+    app.locals.db.collection('logs').insertOne(req.body)
 
     res.send(true)
 })
@@ -26,4 +26,4 @@ app.post('/', (req, res) => {
 MongoClient.connect(DB_URL, { useNewUrlParser: true }).then((db) => {
   app.locals.db = db
   app.listen(process.env.PORT)
-})``
+})
