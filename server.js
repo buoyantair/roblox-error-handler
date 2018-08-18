@@ -25,5 +25,7 @@ app.post('/', (req, res) => {
 
 MongoClient.connect(DB_URL, { useNewUrlParser: true }).then((db) => {
   app.locals.db = db
-  app.listen(process.env.PORT)
+  app.listen(process.env.PORT, () => {
+    console.log('server is listening');
+  })
 })
